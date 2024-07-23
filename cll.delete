@@ -1,0 +1,92 @@
+import java.util.Scanner;
+class bala
+{
+  Node head;
+  Node tail;
+  class Node
+  {
+    int data;
+    Node next;
+    Node(int val)
+    {
+      data=val;
+      next=null;
+    }
+  }
+  bala()
+  {
+    head=null;
+    tail=null;
+  }
+  void insertEnd(int val)
+  {
+    Node temp=new Node(val);
+    if(head==null)
+    {
+      head=temp;
+      tail=temp;
+    }
+    else
+    {
+      tail.next=temp;
+      temp.next=head;
+      tail=temp;
+    }
+  }
+  void delete(int num)
+  {
+    if(head.data!=num)
+    {
+      Node temp=head;
+      while(temp.next!=head)
+      {
+        if(temp.data==num)
+        {
+          temp.data=temp.next.data;
+          temp.next=temp.next.next;
+          break;
+        }
+        else
+        {
+          temp=temp.next;
+        }
+    }
+  }
+  else
+  {
+    head=null;
+  }
+  }
+  void display()
+  {
+    Node temp=head;
+    do
+    {
+      System.out.print(temp.data+" ");
+      temp=temp.next;
+    }while(temp!=head);
+    System.out.println();
+  }
+  public static void main(String[] args)
+  {
+    Scanner s=new Scanner(System.in);
+    bala list=new bala();
+    int m=s.nextInt();
+    for(int i=0;i<m;i++)
+    {
+      if(i>=0)
+      {
+      int val=s.nextInt();
+      list.insertEnd(val);
+      }
+      else
+      {
+        break;
+      }
+    }
+    int num=s.nextInt();
+    list.delete(num);
+    list.display();
+    list.display();
+  }
+}
